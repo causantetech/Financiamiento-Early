@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Recursos para OSCs Cívicas</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
 
   :root {
-    --ink: #1a1a2e;
-    --paper: #f7f5f0;
-    --accent: #2d6a4f;
-    --accent2: #e76f51;
-    --accent3: #457b9d;
-    --muted: #6b6b6b;
-    --border: #d4cfc5;
-    --incidencia: #7b2d8b;
-    --producto: #2d6a4f;
-    --hibrido: #c45c1a;
-    --idea-bg: #eef6f2;
-    --proto-bg: #fef3ed;
+    --ink: #000000;
+    --paper: #ffffff;
+    --accent: #d7d100;
+    --accent2: #b3994c;
+    --accent3: #8f86a3;
+    --muted: #555555;
+    --border: #d0dbce;
+    --incidencia: #8f86a3;
+    --producto: #8a7a00;
+    --hibrido: #b3994c;
+    --idea-bg: #f9f9e8;
+    --proto-bg: #f5f2e8;
     --card-bg: #ffffff;
     --tag-h: 26px;
   }
@@ -27,7 +27,8 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
     background: var(--paper);
     color: var(--ink);
     font-size: 15px;
@@ -59,9 +60,9 @@
     background: rgba(255,255,255,0.02);
   }
   h1 {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
     font-size: clamp(28px, 5vw, 48px);
-    font-weight: 400;
     line-height: 1.1;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
@@ -102,7 +103,8 @@
     border: 1px solid rgba(255,255,255,0.2);
     background: transparent;
     color: rgba(247,245,240,0.7);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
     font-size: 13px;
     cursor: pointer;
     transition: all 0.2s;
@@ -111,13 +113,13 @@
     gap: 6px;
   }
   .filter-btn:hover { border-color: rgba(255,255,255,0.5); color: var(--paper); }
-  .filter-btn.active-all { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .filter-btn.active-all { background: #d7d100; color: #000000; border-color: #d7d100; }
   .filter-btn.active-incidencia { background: var(--incidencia); color: white; border-color: var(--incidencia); }
   .filter-btn.active-producto { background: var(--producto); color: white; border-color: var(--producto); }
   .filter-btn.active-hibrido { background: var(--hibrido); color: white; border-color: var(--hibrido); }
   .filter-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.12); margin: 0 4px; }
-  .filter-btn.stage-btn.active-idea { background: #2d6a4f; color: white; border-color: #2d6a4f; }
-  .filter-btn.stage-btn.active-prototipo { background: #e76f51; color: white; border-color: #e76f51; }
+  .filter-btn.stage-btn.active-idea { background: #8a7a00; color: white; border-color: #8a7a00; }
+  .filter-btn.stage-btn.active-prototipo { background: #b3994c; color: white; border-color: #b3994c; }
 
   /* MAIN */
   main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -131,9 +133,9 @@
     margin-bottom: 6px;
   }
   .stage-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
     font-size: 26px;
-    font-weight: 400;
   }
   .stage-tag {
     font-size: 11px;
@@ -143,8 +145,8 @@
     border-radius: 100px;
     font-weight: 600;
   }
-  .stage-tag.idea { background: var(--idea-bg); color: var(--producto); }
-  .stage-tag.prototipo { background: var(--proto-bg); color: var(--hibrido); }
+  .stage-tag.idea { background: var(--idea-bg); color: #6b6400; }
+  .stage-tag.prototipo { background: var(--proto-bg); color: #7a6a00; }
   .stage-desc {
     color: var(--muted);
     font-size: 14px;
@@ -219,9 +221,9 @@
     display: flex;
     align-items: center;
   }
-  .tag.incidencia { background: #f3e8f7; color: var(--incidencia); }
-  .tag.producto { background: #e8f5ee; color: var(--producto); }
-  .tag.hibrido { background: #fdeee7; color: var(--hibrido); }
+  .tag.incidencia { background: #eeecf3; color: var(--incidencia); }
+  .tag.producto { background: #f5f4cc; color: var(--producto); }
+  .tag.hibrido { background: #f5f0e0; color: var(--hibrido); }
 
   .card-toggle {
     flex-shrink: 0;
@@ -277,12 +279,12 @@
   .field-block.full-width { grid-column: 1 / -1; }
 
   .nota {
-    background: #fffbeb;
-    border: 1px solid #f0e4a8;
+    background: #f9f9e8;
+    border: 1px solid #d7d100;
     border-radius: 8px;
     padding: 10px 14px;
     font-size: 13px;
-    color: #7a6000;
+    color: #5a5200;
     grid-column: 1 / -1;
     line-height: 1.5;
   }
