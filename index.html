@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recursos para OSCs Cívicas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f7f5f0;
+    --accent: #2d6a4f;
+    --accent2: #e76f51;
+    --accent3: #457b9d;
+    --muted: #6b6b6b;
+    --border: #d4cfc5;
+    --incidencia: #7b2d8b;
+    --producto: #2d6a4f;
+    --hibrido: #c45c1a;
+    --idea-bg: #eef6f2;
+    --proto-bg: #fef3ed;
+    --card-bg: #ffffff;
+    --tag-h: 26px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.02);
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  header p {
+    color: rgba(247,245,240,0.65);
+    font-size: 15px;
+    max-width: 560px;
+    font-weight: 300;
+  }
+  .disclaimer {
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(247,245,240,0.45);
+    font-style: italic;
+  }
+
+  /* FILTERS */
+  .filters {
+    background: var(--ink);
+    padding: 0 40px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .filter-label {
+    color: rgba(247,245,240,0.45);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 4px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(247,245,240,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .filter-btn:hover { border-color: rgba(255,255,255,0.5); color: var(--paper); }
+  .filter-btn.active-all { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .filter-btn.active-incidencia { background: var(--incidencia); color: white; border-color: var(--incidencia); }
+  .filter-btn.active-producto { background: var(--producto); color: white; border-color: var(--producto); }
+  .filter-btn.active-hibrido { background: var(--hibrido); color: white; border-color: var(--hibrido); }
+  .filter-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.12); margin: 0 4px; }
+  .filter-btn.stage-btn.active-idea { background: #2d6a4f; color: white; border-color: #2d6a4f; }
+  .filter-btn.stage-btn.active-prototipo { background: #e76f51; color: white; border-color: #e76f51; }
+
+  /* MAIN */
+  main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* STAGE SECTION */
+  .stage-section { margin-bottom: 56px; }
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .stage-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    font-weight: 400;
+  }
+  .stage-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .stage-tag.idea { background: var(--idea-bg); color: var(--producto); }
+  .stage-tag.prototipo { background: var(--proto-bg); color: var(--hibrido); }
+  .stage-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+    padding-left: 2px;
+  }
+
+  /* CATEGORY HEADING */
+  .category-heading {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin: 32px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .category-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .cards { display: flex; flex-direction: column; gap: 12px; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+  .card.hidden { display: none; }
+
+  .card-header {
+    padding: 18px 20px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    user-select: none;
+  }
+  .card-header-left { flex: 1; }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .card-summary {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+    height: var(--tag-h);
+    display: flex;
+    align-items: center;
+  }
+  .tag.incidencia { background: #f3e8f7; color: var(--incidencia); }
+  .tag.producto { background: #e8f5ee; color: var(--producto); }
+  .tag.hibrido { background: #fdeee7; color: var(--hibrido); }
+
+  .card-toggle {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 2px;
+  }
+  .card-toggle svg { transition: transform 0.25s; }
+  .card.open .card-toggle svg { transform: rotate(180deg); }
+  .card.open .card-toggle { background: var(--ink); border-color: var(--ink); }
+  .card.open .card-toggle svg path { stroke: white; }
+
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .card.open .card-body { max-height: 1000px; }
+  .card-body-inner {
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .card-body-inner { grid-template-columns: 1fr; }
+  }
+
+  .field-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .field-value {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .field-value ul { padding-left: 16px; }
+  .field-value ul li { margin-bottom: 4px; }
+  .field-block { margin-bottom: 2px; }
+  .field-block.full-width { grid-column: 1 / -1; }
+
+  .nota {
+    background: #fffbeb;
+    border: 1px solid #f0e4a8;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #7a6000;
+    grid-column: 1 / -1;
+    line-height: 1.5;
+  }
+
+  /* SEQUENCE */
+  .sequence-section { margin-top: 56px; }
+  .sequence-note {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: var(--paper);
+    border-left: 3px solid var(--border);
+    border-radius: 0 6px 6px 0;
+  }
+  .sequence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .sequence-card {
+    border-radius: 12px;
+    padding: 22px;
+    border: 1px solid var(--border);
+  }
+  .sequence-card.incidencia { border-top: 3px solid var(--incidencia); }
+  .sequence-card.producto { border-top: 3px solid var(--producto); }
+  .sequence-card.hibrido { border-top: 3px solid var(--hibrido); }
+  .sequence-card-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sequence-steps { list-style: none; }
+  .sequence-steps li {
+    font-size: 13.5px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .sequence-steps li:last-child { border-bottom: none; }
+  .step-period {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    flex-shrink: 0;
+    padding-top: 2px;
+    min-width: 52px;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 15px;
+    display: none;
+  }
+  .empty-state.visible { display: block; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Recursos para<br>OSCs Cívicas</h1>
+  <p>Financiamiento, apoyo práctico y redes para etapas IDEA y PROTOTIPO</p>
+  <p class="disclaimer">Los ejemplos citados son ilustrativos, no el universo de opciones disponibles.</p>
+</header>
+
+<div class="filters">
+  <span class="filter-label">Tipo</span>
+  <button class="filter-btn active-all" data-filter="tipo" data-value="all">Todos</button>
+  <button class="filter-btn" data-filter="tipo" data-value="incidencia">🟣 Incidencia</button>
+  <button class="filter-btn" data-filter="tipo" data-value="producto">🟢 Producto/Servicio</button>
+  <button class="filter-btn" data-filter="tipo" data-value="hibrido">🟠 Híbrido</button>
+  <div class="filter-divider"></div>
+  <span class="filter-label">Etapa</span>
+  <button class="filter-btn stage-btn active-all" data-filter="stage" data-value="all">Ambas</button>
+  <button class="filter-btn stage-btn" data-filter="stage" data-value="idea">IDEA</button>
+  <button class="filter-btn stage-btn" data-filter="stage" data-value="prototipo">PROTOTIPO</button>
+</div>
+
+<main>
+
+<!-- ===== ETAPA IDEA ===== -->
+<div class="stage-section" data-stage="idea">
+  <div class="stage-header">
+    <h2 class="stage-title">Etapa IDEA</h2>
+    <span class="stage-tag idea">Meses 0–4</span>
+  </div>
+  <p class="stage-desc">Validar que el problema es real, que hay gente que lo vive, que tienes equipo para resolverlo. Dinero necesario: por lo general S/5K–20K.</p>
+
+  <div class="category-heading">Dinero</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Subvención o grant pequeño</div>
+          <div class="card-summary">Fondos no reembolsables para exploración inicial, sin mucho trámite.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Dinero que no devuelves. Monto bajo, pocas exigencias: idea clara + equipo básico.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Idea viable, equipo identificado, propuesta de 1–2 páginas.</div>
+        </div>
+        <div class="field-block full-width">
+          <div class="field-label">Tipos (ejemplos en Perú)</div>
+          <div class="field-value"><ul>
+            <li>Fondos estatales de emprendimiento (ej. Startup Perú – ProInnóvate)</li>
+            <li>Challenge funds corporativos (ej. Desafío Kunan)</li>
+            <li>Fondos multilaterales (ej. Embajada de Australia – Direct Aid Program)</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Crowdfunding</div>
+          <div class="card-summary">Más que recaudar dinero, es validar que el problema resuena.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es en IDEA</div>
+          <div class="field-value">Campaña corta (30–45 días). El objetivo no es financiarte: es demostrar que hay comunidad.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Historia clara, red inicial de 20–30 personas que compartan, meta pequeña y alcanzable.</div>
+        </div>
+        <div class="field-block full-width">
+          <div class="field-label">Ejemplos de plataformas</div>
+          <div class="field-value"><ul>
+            <li>Vaki (referente en Perú y LatAm)</li>
+            <li>Kickstarter o Indiegogo (audiencia internacional)</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Dinero de red cercana (friends & family)</div>
+          <div class="card-summary">Dinero de gente que te conoce y cree en lo que haces.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Amigos, familia, colegas aportan sin tramitología. Puede ser donación o préstamo.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Relación personal sólida, transparencia sobre el uso del dinero, actualizaciones mensuales.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <div class="category-heading">Apoyo en especie (in kind)</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Apoyo en especie (in kind)</div>
+          <div class="card-summary">Recursos no monetarios que reemplazan gastos operativos básicos.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Operativos físicos</div>
+          <div class="field-value"><ul>
+            <li>Espacio de trabajo (hub, coworking o incubadora)</li>
+            <li>Sala de reuniones para entrevistas y focus groups</li>
+            <li>Materiales para prototipado</li>
+          </ul></div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Operativos digitales</div>
+          <div class="field-value"><ul>
+            <li>Google Workspace, Figma, Miro, Notion, Trello</li>
+            <li>Voluntariado técnico especializado (ej. graduadas de Laboratoria, desarrolladores independientes)</li>
+          </ul></div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Comunicación y visibilidad</div>
+          <div class="field-value">Newsletters de ecosistema, eventos de pitch, redes de aliados.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos de aliados</div>
+          <div class="field-value"><ul>
+            <li>Incubadoras universitarias (ej. CIDE-PUCP, UTEC Ventures, Wichay Continental)</li>
+            <li>Red Kunan, Protagonistas del Cambio – UPC</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Información y datos existentes</div>
+          <div class="card-summary">Datos públicos que prueben que tu problema es real.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Bases de datos públicas, investigaciones, información que otros recopilaron.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos</div>
+          <div class="field-value"><ul>
+            <li>INEI, ONPE</li>
+            <li>Universidades (tesis), municipios</li>
+            <li>Plataformas cívicas</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Mentoría + amplificación</div>
+          <div class="card-summary">Experto te asesora; medios te conectan con primeros aliados.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Retroalimentación especializada + canales que te conectan con primeros 20–50 aliados/usuarios.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Estar en comunidad activa, propuesta clara y comunicable.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <div class="category-heading">Redes y programas</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Incubadoras</div>
+          <div class="card-summary">Estructuran la idea desde cero: validación, modelo de impacto, equipo.</div>
+          <div class="card-tags">
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="nota">Los proyectos de Incidencia pura encuentran mejor soporte en redes del sector y fondos filantrópicos internacionales.</div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Equipo visible (1–2 personas), idea clara, disposición a pivotar según lo que aprendas.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos en Perú</div>
+          <div class="field-value"><ul>
+            <li>CIDE–PUCP</li>
+            <li>UTEC Ventures</li>
+            <li>Wichay Continental</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="idea">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Ecosistemas cívicos</div>
+          <div class="card-summary">Espacios de encuentro para conectar, compartir y colaborar con pares del sector.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Ejemplos en Perú</div>
+          <div class="field-value"><ul>
+            <li>ACE Lab – Causante Innovación / Universidad Continental</li>
+            <li>InnovaSuyu – ProInnóvate/PRODUCE (foco productivo; fondos no reembolsables hasta S/67K en regiones participantes)</li>
+            <li>Red Nacional de Laboratorios de Innovación Digital – PCM/SGTD (gob.pe/reddelaboratorios)</li>
+          </ul></div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos regionales</div>
+          <div class="field-value"><ul>
+            <li>LABIC – Laboratorios Iberoamericanos de Innovación Ciudadana (SEGIB)</li>
+            <li>Red DemocráTICa – Programa DDI (democratica.digital/red)</li>
+            <li>RIL – Red Iberoamericana de Laboratorios de Innovación Pública (SEGIB/CYTED). Sin nodo en Perú aún; fuente de contactos regionales.</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+</div><!-- /stage idea -->
+
+
+<!-- ===== ETAPA PROTOTIPO ===== -->
+<div class="stage-section" data-stage="prototipo">
+  <div class="stage-header">
+    <h2 class="stage-title">Etapa PROTOTIPO</h2>
+    <span class="stage-tag prototipo">Meses 5–9</span>
+  </div>
+  <p class="stage-desc">Demostrar que tu solución funciona: usuarios reales la usan, cambio de política es viable. Dinero: por lo general S/35K–180K.</p>
+
+  <div class="category-heading">Dinero</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Subvención o grant grande</div>
+          <div class="card-summary">Subvenciones competitivas. Proceso más formal. Mayor monto.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block full-width">
+          <div class="field-label">Ahora necesitas</div>
+          <div class="field-value">Ya no postulas por potencial. Postulas porque FUNCIONA. Evidencia real de uso o impacto.</div>
+        </div>
+        <div class="field-block full-width">
+          <div class="field-label">Tipos (ejemplos en Perú)</div>
+          <div class="field-value"><ul>
+            <li>Fondos estatales de emprendimiento (ej. Startup Perú – Empresas Jóvenes)</li>
+            <li>Fondos filantrópicos internacionales (ej. Mozilla Foundation, Open Society Foundations, Luminate)</li>
+            <li>Fondos corporativos de filantropía estratégica (ej. Instituto Bicentenario – BCP/Credicorp)</li>
+            <li>Fondos multilaterales y bilaterales (ej. Comisión Europea, embajadas con programas de grants)</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Crowdfunding</div>
+          <div class="card-summary">La comunidad que construiste en IDEA financia la siguiente etapa.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es en PROTOTIPO</div>
+          <div class="field-value">Ya tienes evidencia. Meta más ambiciosa. Aquí sí es sobre el dinero, no solo la validación.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Prototipo o casos documentados, comunidad activa, capacidad de producir contenido durante la campaña.</div>
+        </div>
+        <div class="field-block full-width">
+          <div class="field-label">Ejemplos de plataformas</div>
+          <div class="field-value"><ul>
+            <li>Vaki (referente en Perú y LatAm)</li>
+            <li>Kickstarter o Indiegogo (audiencia internacional)</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Donaciones individuales</div>
+          <div class="card-summary">Contribuciones recurrentes de personas que ya te conocen y confían en tu trabajo.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es en PROTOTIPO</div>
+          <div class="field-value">Viable ahora porque tienes comunidad y resultados que mostrar. Flujo continuo, no campaña.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos</div>
+          <div class="field-value"><ul>
+            <li>Vaki (donaciones recurrentes)</li>
+            <li>Patreon (membresías con beneficios)</li>
+            <li>Yape/Plin para redes locales cercanas</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Contratos de servicios y consultoría</div>
+          <div class="card-summary">Ingresos propios vendiendo las capacidades de tu organización.</div>
+          <div class="card-tags">
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Investigación aplicada, facilitación, formación, consultoría para gobiernos u otras OSCs. Reduce dependencia de grants.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Metodología documentada, capacidad de entrega, personería jurídica para facturar.</div>
+        </div>
+        <div class="nota">Para proyectos de Incidencia puede comprometer la independencia — evaluar caso por caso.</div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <div class="category-heading">Apoyo en especie (in kind)</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Voluntariado corporativo y pro bono</div>
+          <div class="card-summary">Empresas que destinan tiempo de sus profesionales a proyectos de impacto.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block">
+          <div class="field-label">Qué es</div>
+          <div class="field-value">Legal, tecnológico, comunicaciones, finanzas. Llega con prototipo claro y necesidad concreta.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos</div>
+          <div class="field-value"><ul>
+            <li>Programas de RSE (ej. BCP, Telefónica, Cálidda)</li>
+            <li>Proa.pe: conecta voluntarios con OSCs en Perú</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="card" data-tipos="incidencia producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Testing real con usuarios</div>
+          <div class="card-summary">De amigos a 50–100 personas que viven el problema.</div>
+          <div class="card-tags">
+            <span class="tag incidencia">🟣 Incidencia</span>
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="field-block full-width">
+          <div class="field-label">Qué necesitas</div>
+          <div class="field-value">Acceso real a comunidad, confidencialidad si hay datos sensibles, documentar feedback sistemáticamente.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+
+  <div class="category-heading">Redes y programas</div>
+  <div class="cards">
+
+    <div class="card" data-tipos="producto hibrido" data-stage="prototipo">
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-header-left">
+          <div class="card-title">Aceleradoras</div>
+          <div class="card-summary">Escalar algo que ya funciona: modelo, métricas, acceso a inversión.</div>
+          <div class="card-tags">
+            <span class="tag producto">🟢 Producto/Servicio</span>
+            <span class="tag hibrido">🟠 Híbrido</span>
+          </div>
+        </div>
+        <div class="card-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="card-body"><div class="card-body-inner">
+        <div class="nota">Los proyectos de Incidencia pura encuentran mejor soporte en redes internacionales de derechos y advocacy.</div>
+        <div class="field-block">
+          <div class="field-label">Requisitos</div>
+          <div class="field-value">Prototipo funcional, evidencia de uso o impacto, equipo comprometido.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">Ejemplos en Perú</div>
+          <div class="field-value"><ul>
+            <li>UTEC Ventures</li>
+            <li>Emprende UP – Universidad del Pacífico (abierta a externos, dos cohortes al año)</li>
+            <li>NESsT (requiere ventas existentes)</li>
+            <li>Fundación Wiese – Fondo Emprendedor (fondo de impacto con aceleración; aprox. S/150K + 18 meses de acompañamiento)</li>
+          </ul></div>
+        </div>
+      </div></div>
+    </div>
+
+  </div><!-- /cards -->
+</div><!-- /stage prototipo -->
+
+<div class="empty-state" id="emptyState">
+  No hay recursos que coincidan con los filtros seleccionados.
+</div>
+
+<!-- ===== SECUENCIA DE REFERENCIA ===== -->
+<div class="sequence-section">
+  <div class="stage-header">
+    <h2 class="stage-title">Secuencia de referencia</h2>
+  </div>
+  <p class="sequence-note">Los tiempos son orientativos y no necesariamente se adaptan a todos los proyectos. Cada organización tiene su propio ritmo según el contexto, el equipo y el problema que enfrenta.</p>
+  <div class="sequence-grid">
+
+    <div class="sequence-card incidencia">
+      <div class="sequence-card-title">🟣 Incidencia</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Advocacy e investigación que buscan cambios de política pública o derechos, sin modelo comercial.</p>
+      <ul class="sequence-steps">
+        <li><span class="step-period">Inicio</span><span>Investigar, hablar con personas afectadas, recopilar información.</span></li>
+        <li><span class="step-period">Luego</span><span>Documentar casos reales. Primeros comunicados y propuestas de reforma.</span></li>
+        <li><span class="step-period">Más adelante</span><span>Grant más grande. Evidencia sólida, reforma concreta con actores interesados.</span></li>
+        <li><span class="step-period">Sostenibilidad</span><span>Donantes mensuales + contratos con OSCs aliadas.</span></li>
+      </ul>
+    </div>
+
+    <div class="sequence-card producto">
+      <div class="sequence-card-title">🟢 Producto/Servicio</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Herramientas, plataformas y aplicaciones que la gente usa.</p>
+      <ul class="sequence-steps">
+        <li><span class="step-period">Inicio</span><span>Prototipo simple. Validar que la gente quiere usarlo.</span></li>
+        <li><span class="step-period">Luego</span><span>Versión funcionando, primeros usuarios. Postular a incubadora.</span></li>
+        <li><span class="step-period">Más adelante</span><span>Grant grande, usuarios activos. Postular a aceleradora.</span></li>
+        <li><span class="step-period">Sostenibilidad</span><span>Memberships/contratos + donantes recurrentes.</span></li>
+      </ul>
+    </div>
+
+    <div class="sequence-card hibrido">
+      <div class="sequence-card-title">🟠 Híbrido</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Combina incidencia con herramienta o plataforma.</p>
+      <ul class="sequence-steps">
+        <li><span class="step-period">Inicio</span><span>Dinero inicial para investigación + prototipo en paralelo.</span></li>
+        <li><span class="step-period">Luego</span><span>Casos + usuarios testeando. Postular a incubadora.</span></li>
+        <li><span class="step-period">Más adelante</span><span>Grant grande. Casos + usuarios + modelo de cambio claro.</span></li>
+        <li><span class="step-period">Sostenibilidad</span><span>Ingresos por producto + incidencia. Impacto dual.</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<footer>
+  Recursos para OSCs Cívicas · Los ejemplos son ilustrativos, no el universo de opciones disponibles.
+</footer>
+
+<script>
+  function toggleCard(header) {
+    const card = header.closest('.card');
+    card.classList.toggle('open');
+  }
+
+  let activeTipo = 'all';
+  let activeStage = 'all';
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('.card');
+    const stageSections = document.querySelectorAll('.stage-section');
+    let visibleCount = 0;
+
+    // Show/hide stage sections
+    stageSections.forEach(section => {
+      const sectionStage = section.dataset.stage;
+      if (activeStage === 'all' || activeStage === sectionStage) {
+        section.style.display = '';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+
+    cards.forEach(card => {
+      const cardTipos = card.dataset.tipos.split(' ');
+      const cardStage = card.dataset.stage;
+
+      const tipoMatch = activeTipo === 'all' || cardTipos.includes(activeTipo);
+      const stageMatch = activeStage === 'all' || activeStage === cardStage;
+
+      if (tipoMatch && stageMatch) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('open');
+      }
+    });
+
+    document.getElementById('emptyState').classList.toggle('visible', visibleCount === 0);
+  }
+
+  document.querySelectorAll('[data-filter="tipo"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter="tipo"]').forEach(b => {
+        b.className = 'filter-btn';
+      });
+      activeTipo = btn.dataset.value;
+      if (activeTipo === 'all') btn.classList.add('active-all');
+      else btn.classList.add('active-' + activeTipo);
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('[data-filter="stage"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter="stage"]').forEach(b => {
+        b.className = 'filter-btn stage-btn';
+      });
+      activeStage = btn.dataset.value;
+      if (activeStage === 'all') btn.classList.add('active-all');
+      else btn.classList.add('active-' + activeStage);
+      applyFilters();
+    });
+  });
+</script>
+</body>
+</html>
